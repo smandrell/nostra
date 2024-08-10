@@ -1,62 +1,32 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Optional
 from datetime import datetime
 
 
 class SpeedMeasurement(BaseModel):
-    schema_id: str
-    _event_created_ms: int
-    _event_sent_at: datetime
-    theme_id: str
-    visually_ready: int
-    first_contentful_paint: int
-    navigation_start: int
-    response_end: int
-    dom_loading: int
-    dom_interactive: int
-    dom_content_loaded_event_start: int
-    dom_content_loaded_event_end: int
-    dom_complete: int
-    load_event_start: int
-    load_event_end: int
-    url: str
-    _edge_storeHostname: str
-    _edge_assignment: str
-    _edge_sessionId: str
-    _edge_visitorId: str
-    _edge_documentCachePathname: str
-    _edge_documentCacheStatus: str
-    _edge_deviceType: str
-    _edge_cf_city: str
-    _edge_cf_country: str
-
-# Example usage:
-# json_payload = {
-#     "schema_id": "speed_measurement/1.2",
-#     "_event_created_ms": 1716556734436,
-#     "_event_sent_at": "2024-05-24T13:18:55.991Z",
-#     "theme_id": "1234",
-#     "visually_ready": 409,
-#     "first_contentful_paint": 409,
-#     "navigation_start": 1716556733896,
-#     "response_end": 1716556733906,
-#     "dom_loading": 1716556733908,
-#     "dom_interactive": 1716556734202,
-#     "dom_content_loaded_event_start": 1716556734287,
-#     "dom_content_loaded_event_end": 1716556734287,
-#     "dom_complete": 1716556734680,
-#     "load_event_start": 1716556734680,
-#     "load_event_end": 1716556734684,
-#     "url": "https://www.speed-preview.com/",
-#     "_edge_storeHostname": "www.speed-preview.com",
-#     "_edge_assignment": "test",
-#     "_edge_sessionId": "f07ce624-84ca-4b70-893c-cbe54c595b23",
-#     "_edge_visitorId": "6bea0848-ef92-4a96-86b3-6a2060761bab",
-#     "_edge_documentCachePathname": "/products/aviator-sunglasses",
-#     "_edge_documentCacheStatus": "HIT",
-#     "_edge_deviceType": "mobile",
-#     "_edge_cf_city": "New York",
-#     "_edge_cf_country": "US"
-# }
-#
-# payload = SpeedMeasurement(**json_payload)
-# print(payload)
+    schema_id: str = Field(..., alias='schema_id')
+    event_created_ms: int = Field(..., alias='_event_created_ms')
+    event_sent_at: Optional[datetime] = Field(None, alias='_event_sent_at')
+    theme_id: str = Field(..., alias='theme_id')
+    visually_ready: Optional[int] = Field(None, alias='visually_ready')
+    first_contentful_paint: Optional[int] = Field(None, alias='firstContentfulPaint')
+    navigation_start: Optional[int] = Field(None, alias='navigationStart')
+    response_start: Optional[int] = Field(None, alias='responseStart')
+    response_end: Optional[int] = Field(None, alias='responseEnd')
+    dom_loading: Optional[int] = Field(None, alias='domLoading')
+    dom_interactive: Optional[int] = Field(None, alias='domInteractive')
+    dom_content_loaded_event_start: Optional[int] = Field(None, alias='domContentLoadedEventStart')
+    dom_content_loaded_event_end: Optional[int] = Field(None, alias='domContentLoadedEventEnd')
+    dom_complete: Optional[int] = Field(None, alias='domComplete')
+    load_event_start: Optional[int] = Field(None, alias='loadEventStart')
+    load_event_end: Optional[int] = Field(None, alias='loadEventEnd')
+    url: str = Field(...)
+    edge_store_hostname: Optional[str] = Field(None, alias='_edge_storeHostname')
+    edge_assignment: Optional[str] = Field(None, alias='_edge_assignment')
+    edge_session_id: Optional[str] = Field(None, alias='_edge_sessionId')
+    edge_visitor_id: Optional[str] = Field(None, alias='_edge_visitorId')
+    edge_document_cache_pathname: Optional[str] = Field(None, alias='_edge_documentCachePathname')
+    edge_document_cache_status: Optional[str] = Field(None, alias='_edge_documentCacheStatus')
+    edge_device_type: Optional[str] = Field(None, alias='_edge_deviceType')
+    edge_cf_city: Optional[str] = Field(None, alias='_edge_cf_city')
+    edge_cf_country: Optional[str] = Field(None, alias='_edge_cf_country')
