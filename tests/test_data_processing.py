@@ -19,7 +19,7 @@ def test_dom_content_load_time():
 # Question 2 - Page Load Time
 def test_page_load_time():
     assert page_load_time(navigation_start=TEST_PAYLOAD.navigation_start,
-                          load_event_end=TEST_PAYLOAD.load_event_end) == 788
+                          load_event_start=TEST_PAYLOAD.load_event_start) == 788
 
 
 # Question 3 - compute aggregates (mean, median, 75th percentile) for key metrics from question 2

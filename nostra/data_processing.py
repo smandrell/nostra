@@ -49,6 +49,7 @@ def _has_required_agg_fields(payload: SpeedMeasurement) -> bool:
 
 
 # Returns time elapsed in ms
+# First byte is usually 'response_start', but can be 'response_end' when 'response_start' is missing (to approximate)
 def ttfb(navigation_start: int, first_byte: int) -> int:
     return first_byte - navigation_start
 
@@ -62,5 +63,5 @@ def dom_content_load_time(dom_loading: int, dom_content_loaded_event_start: int)
 
 # Measure total page load time
 # Returns time elasped in ms
-def page_load_time(navigation_start: int, load_event_end: int) -> int:
-    return load_event_end - navigation_start
+def page_load_time(navigation_start: int, load_event_start: int) -> int:
+    return load_event_start - navigation_start
